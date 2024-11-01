@@ -3,7 +3,7 @@ export declare class TenantService {
     private tenant;
     setTenant(tenant: Partner): void;
     getTenant(): {
-        id: string;
+        id: number;
         name: string;
         createdAt: Date;
         updatedAt: Date;

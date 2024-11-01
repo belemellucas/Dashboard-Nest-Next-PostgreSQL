@@ -6,11 +6,11 @@ export declare class UsersController {
     constructor(usersService: UsersService);
     create(data: CreateUserDto): Promise<UserPresenter>;
     getUserProfile(id: string): Promise<{
-        id: string;
+        id: number;
         name: string;
         email: string;
         password: string;
-        roles: import(".prisma/client").Prisma.JsonValue;
+        roles: import("@prisma/client/runtime/library").JsonValue;
         createdAt: Date;
         updatedAt: Date;
     }>;

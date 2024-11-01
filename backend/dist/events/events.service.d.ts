@@ -7,22 +7,22 @@ export declare class EventsService {
     private tenantService;
     constructor(prismaService: PrismaService, tenantService: TenantService);
     create(createEventDto: CreateEventDto): import(".prisma/client").Prisma.Prisma__EventClient<{
-        id: string;
+        id: number;
         name: string;
-        description: string;
-        date: Date;
         createdAt: Date;
         updatedAt: Date;
-        partnerId: string;
+        partnerId: number;
+        description: string;
+        date: Date;
     }, never, import("@prisma/client/runtime/library").DefaultArgs>;
     findAll(): import(".prisma/client").Prisma.PrismaPromise<{
-        id: string;
+        id: number;
         name: string;
-        description: string;
-        date: Date;
         createdAt: Date;
         updatedAt: Date;
-        partnerId: string;
+        partnerId: number;
+        description: string;
+        date: Date;
     }[]>;
     findOne(id: number): string;
     update(id: number, updateEventDto: UpdateEventDto): string;

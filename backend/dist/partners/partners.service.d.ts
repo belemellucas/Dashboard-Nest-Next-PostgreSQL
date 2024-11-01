@@ -7,13 +7,13 @@ export declare class PartnersService {
     create(createPartnerDto: CreatePartnerDto & {
         userId: number;
     }): Promise<{
-        id: string;
+        id: number;
         name: string;
         createdAt: Date;
         updatedAt: Date;
     }>;
     findAll(): import(".prisma/client").Prisma.PrismaPromise<{
-        id: string;
+        id: number;
         name: string;
         createdAt: Date;
         updatedAt: Date;

@@ -4,13 +4,13 @@ export declare class PartnersController {
     private readonly partnersService;
     constructor(partnersService: PartnersService);
     create(createPartnerDto: CreatePartnerDto, req: any): Promise<{
-        id: string;
+        id: number;
         name: string;
         createdAt: Date;
         updatedAt: Date;
     }>;
     findAll(): import(".prisma/client").Prisma.PrismaPromise<{
-        id: string;
+        id: number;
         name: string;
         createdAt: Date;
         updatedAt: Date;

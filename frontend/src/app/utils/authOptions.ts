@@ -1,14 +1,28 @@
-import { NextAuthOptions} from "next-auth";
+import { NextAuthOptions, User} from "next-auth";
 import { JWT } from "next-auth/jwt";
 import NextAuth from "next-auth/next";
 import CredentialsProvider from "next-auth/providers/credentials"; 
 import { AuthOptions } from 'next-auth';
 
+
+interface BackendTokens {
+  accessToken: string;
+  refreshToken: string;
+  expiresIn: number; 
+}
+
+interface AuthenticatedUser extends User {
+  backendTokens: BackendTokens;
+}
+
+
+
 async function refreshToken(token: JWT): Promise<JWT> {
+  
     const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/auth/refresh`, {
       method: "POST",
       headers: {
-        authorization: `Refresh ${token.backendTokens.refreshToken}`,
+        authorization: `Refresh ${token.backendTokens?.refreshToken}`,
       },
     });
 
@@ -96,7 +110,8 @@ export const authOptions: NextAuthOptions = {
     async jwt({ token, user }) {
       if (user) {
         // Incluindo tokens no JWT
-        token.backendTokens = user.backendTokens;
+        //token.backendTokens = user.backendTokens;
+        token.backendTokens = (user as AuthenticatedUser).backendTokens;
       }
      /* if (new Date().getTime() < token.backendTokens.expiresIn) {
         return token;

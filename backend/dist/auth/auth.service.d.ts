@@ -7,10 +7,10 @@ export declare class AuthService {
     constructor(userService: UsersService, jwtService: JwtService);
     login(data: LoginDto): Promise<{
         user: {
-            id: string;
+            id: number;
             name: string;
             email: string;
-            roles: import(".prisma/client").Prisma.JsonValue;
+            roles: import("@prisma/client/runtime/library").JsonValue;
             createdAt: Date;
             updatedAt: Date;
         };
@@ -21,10 +21,10 @@ export declare class AuthService {
         };
     }>;
     validateUser(dto: LoginDto): Promise<{
-        id: string;
+        id: number;
         name: string;
         email: string;
-        roles: import(".prisma/client").Prisma.JsonValue;
+        roles: import("@prisma/client/runtime/library").JsonValue;
         createdAt: Date;
         updatedAt: Date;
     }>;

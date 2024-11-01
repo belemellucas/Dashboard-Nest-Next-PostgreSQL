@@ -10,6 +10,11 @@ type Props = {
 
 const ProfilePage = async (props: Props) => {
   const session = await getServerSession(authOptions);
+  
+  if (!session || !session.backendTokens) {
+    throw new Error("Usuário não autenticado ou tokens ausentes.");
+  }
+
   const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/users/${props.params.id}`, {
     method: "GET",
     headers: {

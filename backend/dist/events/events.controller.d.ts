@@ -5,22 +5,22 @@ export declare class EventsController {
     private readonly eventsService;
     constructor(eventsService: EventsService);
     create(createEventDto: CreateEventDto): Promise<{
-        id: string;
+        id: number;
         name: string;
-        description: string;
-        date: Date;
         createdAt: Date;
         updatedAt: Date;
-        partnerId: string;
+        partnerId: number;
+        description: string;
+        date: Date;
     }>;
     findAll(): import(".prisma/client").Prisma.PrismaPromise<{
-        id: string;
+        id: number;
         name: string;
-        description: string;
-        date: Date;
         createdAt: Date;
         updatedAt: Date;
-        partnerId: string;
+        partnerId: number;
+        description: string;
+        date: Date;
     }[]>;
     findOne(id: string): string;
     update(id: string, updateEventDto: UpdateEventDto): string;

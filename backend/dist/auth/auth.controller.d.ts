@@ -5,10 +5,10 @@ export declare class AuthController {
     constructor(authService: AuthService);
     login(data: LoginDto): Promise<{
         user: {
-            id: string;
+            id: number;
             name: string;
             email: string;
-            roles: import(".prisma/client").Prisma.JsonValue;
+            roles: import("@prisma/client/runtime/library").JsonValue;
             createdAt: Date;
             updatedAt: Date;
         };
