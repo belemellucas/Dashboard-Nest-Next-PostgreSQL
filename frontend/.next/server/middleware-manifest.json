@@ -1,62 +1,6 @@
 {
-  "sortedMiddleware": [
-    "/"
-  ],
-  "middleware": {
-    "/": {
-      "files": [
-        "prerender-manifest.js",
-        "server/edge-runtime-webpack.js",
-        "server/src/middleware.js"
-      ],
-      "name": "src/middleware",
-      "page": "/",
-      "matchers": [
-        {
-          "regexp": "^(?:\\/(_next\\/data\\/[^/]{1,}))?\\/dashboard(.json)?[\\/#\\?]?$",
-          "originalSource": "/dashboard"
-        },
-        {
-          "regexp": "^(?:\\/(_next\\/data\\/[^/]{1,}))?\\/calendar(.json)?[\\/#\\?]?$",
-          "originalSource": "/calendar"
-        },
-        {
-          "regexp": "^(?:\\/(_next\\/data\\/[^/]{1,}))?\\/profile(.json)?[\\/#\\?]?$",
-          "originalSource": "/profile"
-        },
-        {
-          "regexp": "^(?:\\/(_next\\/data\\/[^/]{1,}))?\\/forms\\/form-elements(.json)?[\\/#\\?]?$",
-          "originalSource": "/forms/form-elements"
-        },
-        {
-          "regexp": "^(?:\\/(_next\\/data\\/[^/]{1,}))?\\/forms\\/form-layout(.json)?[\\/#\\?]?$",
-          "originalSource": "/forms/form-layout"
-        },
-        {
-          "regexp": "^(?:\\/(_next\\/data\\/[^/]{1,}))?\\/tables(.json)?[\\/#\\?]?$",
-          "originalSource": "/tables"
-        },
-        {
-          "regexp": "^(?:\\/(_next\\/data\\/[^/]{1,}))?\\/settings(.json)?[\\/#\\?]?$",
-          "originalSource": "/settings"
-        },
-        {
-          "regexp": "^(?:\\/(_next\\/data\\/[^/]{1,}))?\\/chart(.json)?[\\/#\\?]?$",
-          "originalSource": "/chart"
-        },
-        {
-          "regexp": "^(?:\\/(_next\\/data\\/[^/]{1,}))?\\/ui\\/alerts(.json)?[\\/#\\?]?$",
-          "originalSource": "/ui/alerts"
-        },
-        {
-          "regexp": "^(?:\\/(_next\\/data\\/[^/]{1,}))?\\/ui\\/buttons(.json)?[\\/#\\?]?$",
-          "originalSource": "/ui/buttons"
-        }
-      ],
-      "wasm": [],
-      "assets": []
-    }
-  },
+  "sortedMiddleware": [],
+  "middleware": {},
   "functions": {},
   "version": 2
 }
