@@ -60,8 +60,9 @@ const Header = (props: {
             <Image
               width={42}
               height={42}
-              src={"/images/logo/globalline.png"}
+              src={"/images/logo-akasha.jpeg"}
               alt="Logo"
+               className="rounded-full"
             />
           </Link>
         </div>

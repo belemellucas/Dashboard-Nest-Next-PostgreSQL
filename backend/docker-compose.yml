@@ -15,14 +15,23 @@ services:
 
   # Backend service
   backend:
-    build: . # Build the Docker image using the Dockerfile in the current directory
+    build: . # Build the Docker image using the Dockerfile in the current directory (backend folder)
     image: iqbalpa/backend-movies:latest
     ports:
-      - '8000:8000' # Forward the container's port 3333 to the host machine's port 3333 for accessing the backend service
+      - '8000:8000' # Forward the container's port 8000 to the host machine's port 8000 for accessing the backend service
     depends_on:
       - database # Ensure that the backend service starts after the database service is up and running
     env_file:
       - .env
+
+  # Frontend service
+  frontend:
+    build: ../frontend # Path to the frontend folder containing the Dockerfile
+    image: iqbalpa/frontend-movies:latest
+    ports:
+      - '3000:3000' # Map the container's port 3000 to the host's port 3000
+    depends_on:
+      - backend # Ensure that the frontend starts after the backend is running
 
 volumes:
   database:

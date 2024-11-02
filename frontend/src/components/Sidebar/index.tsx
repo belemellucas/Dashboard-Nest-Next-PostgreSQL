@@ -345,9 +345,10 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
             <Image
               width={176}
               height={32}
-              src={"/images/logo/globalline.png"}
+              src={"/images/logo-akasha.jpeg"}
               alt="Logo"
               priority
+               className="rounded-full"
             />
           </Link>
 

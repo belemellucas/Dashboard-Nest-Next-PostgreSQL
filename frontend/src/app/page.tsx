@@ -7,8 +7,8 @@ import Dashboard from "@/components/Dashboard/Dashboard";
 
 export const metadata: Metadata = {
   title:
-    "Global Line Gestão de atentimento ao cliente",
-  description: "Gerenciar agentes de atendimento com Dashboard e relatórios",
+    "Akasha Dashboard",
+  description: "Dashboard de gerenciamento de pedidos",
 };
 
 export default async function Home() {

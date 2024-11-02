@@ -29,28 +29,10 @@ const SignInForm: React.FC = () => {
   };
 
   return (
-    <div className="flex h-screen">
-      <div className="hidden lg:flex w-1/2 items-center justify-center relative">
-        <div className="absolute inset-0">
-          <Image
-            src={"/images/background/globallinebackground.jpg"}
-            alt="Background"
-            layout="fill"
-            objectFit="cover"
-            quality={100}
-          />
-        </div>
-        <div className="relative z-10">
-          <Image
-            src={"/images/logo/globalline.png"}
-            alt="Logo"
-            width={300}
-            height={300}
-            className="object-contain"
-          />
-        </div>
-      </div>
-      <div className="flex w-full lg:w-1/2 items-center justify-center p-8 sm:p-12.5 lg:p-17.5">
+    <div className="flex justify-center w-full min-h-screen">
+      <div className="flex flex-col items-center justify-center">
+     <Image src="/images/logo-akasha.jpeg" alt="Logo" width={100} height={100}/>
+      <div className="flex  items-center justify-center p-5">
         <div className="w-full max-w-md">
           <h2 className="mb-9 text-2xl font-bold text-black dark:text-white sm:text-title-xl2">
             Entrar
@@ -100,6 +82,7 @@ const SignInForm: React.FC = () => {
             </p>
           </form>
         </div>
+      </div>
       </div>
     </div>
   );
