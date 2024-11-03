@@ -1,34 +1,16 @@
-import { NextAuthOptions, User} from "next-auth";
+import { NextAuthOptions} from "next-auth";
 import { JWT } from "next-auth/jwt";
 import NextAuth from "next-auth/next";
 import CredentialsProvider from "next-auth/providers/credentials"; 
 import { AuthOptions } from 'next-auth';
 
-
-interface BackendTokens {
-  accessToken: string;
-  refreshToken: string;
-  expiresIn: number; 
-}
-
-interface AuthenticatedUser extends User {
-  backendTokens: BackendTokens;
-}
-
-
-
 async function refreshToken(token: JWT): Promise<JWT> {
-  
     const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/auth/refresh`, {
       method: "POST",
       headers: {
-        authorization: `Refresh ${token.backendTokens?.refreshToken}`,
+        authorization: `Refresh ${token.backendTokens.refreshToken}`,
       },
     });
-
-    if (!res.ok) {
-      throw new Error("Falha ao atualizar o token");
-    }
   
     const response = await res.json();
   
@@ -51,44 +33,31 @@ export const authOptions: NextAuthOptions = {
              password: { label: "Password", type: "password"},
          },
          async authorize(credentials, req){
-
-          if (!credentials?.email || !credentials?.password) {
-            console.log("Credenciais inválidas");
-            return null;
-          }
-
-          const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/auth/login`,
+             if (!credentials?.email || !credentials?.password) return null;
+             const { email, password } = credentials;
+             const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/auth/login`,
                  { method: "POST",
-                 
-                 body: JSON.stringify(credentials), 
+                   body: JSON.stringify({
+                     email,
+                     password, 
+                 }),
                  headers: {
                       "Content-Type": "application/json",
                  },
              });
-
-             if (!res.ok) {
-              console.error("Falha ao autenticar: ", res.statusText);
-              return null;
+             if (res.status == 401) {
+                 console.log(res.statusText); 
+               return null;
              }
              const user = await res.json();
-
-             if (!user || !user.backendTokens) {
-              console.error("Usuário ou token inválido");
-              return null;
-             }
  
              return user;
          }, 
      }),
     ], 
  
-   /* OLD 
-   callbacks: {
+    callbacks: {
      async jwt({ token, user }) {
-       if (user) {
-        token.backendTokens = user.backendTokens;
-       }
-
          if(user) return { ...token, ...user};
          
           if (new Date().getTime() < token.backendTokens.expiresIn)
@@ -104,51 +73,6 @@ export const authOptions: NextAuthOptions = {
          //console.log(session, "SESSION--")
          return session;
      }, 
-    },  */
-
-    callbacks: {
-    async jwt({ token, user }) {
-      if (user) {
-        // Incluindo tokens no JWT
-        //token.backendTokens = user.backendTokens;
-        token.backendTokens = (user as AuthenticatedUser).backendTokens;
-      }
-     /* if (new Date().getTime() < token.backendTokens.expiresIn) {
-        return token;
-      } */
-
-      if (Date.now() < token.backendTokens.expiresIn * 1000) {
-        return token;
-      }
-      return await refreshToken(token);
-    },
-    async session({ session, token }) {
-      // old function 
-       //session.backendTokens = token.backendTokens;
-      // return session;
-
-      session.user = token.user || {};
-      session.backendTokens = token.backendTokens;
-      return session;
-    },
-  },
-  session: {
-    strategy: "jwt",
-    maxAge: 30 * 24 * 60 * 60, // 30 dias
-  },
-  cookies: {
-    sessionToken: {
-      name: "next-auth.session-token",
-      options: {
-        httpOnly: true,
-        sameSite: "lax",
-        path: "/",
-        secure: process.env.NODE_ENV === "production",
-      },
-    },
-  },
- 
- 
- 
- 
-    }
+    }, 
+   
+ }
