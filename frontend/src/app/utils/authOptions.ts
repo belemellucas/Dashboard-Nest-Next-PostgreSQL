@@ -35,6 +35,7 @@ export const authOptions: NextAuthOptions = {
          async authorize(credentials, req){
              if (!credentials?.email || !credentials?.password) return null;
              const { email, password } = credentials;
+             console.log(email, password)
              const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/auth/login`,
                  { method: "POST",
                    body: JSON.stringify({
@@ -46,6 +47,7 @@ export const authOptions: NextAuthOptions = {
                  },
              });
              if (res.status == 401) {
+            
                  console.log(res.statusText); 
                return null;
              }
